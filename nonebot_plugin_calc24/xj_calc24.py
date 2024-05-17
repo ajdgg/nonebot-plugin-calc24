@@ -1,17 +1,17 @@
 import re
 import json
 import random
-import os
+from pathlib import Path 
 
 # 加载无效数据列表
-script_path = os.path.abspath(__file__)
-current_dir = os.path.dirname(script_path)
-json_file_path = os.path.join(current_dir, "calc24_invalid_data.json")
+script_path = Path(__file__).absolute()  
+current_dir = script_path.parent  
+json_file_path = current_dir / "calc24_invalid_data.json"  
 
 
-with open(json_file_path, "r") as json_file:
-    loaded_data = json.load(json_file)
-    legal_data_array = loaded_data["data"]
+with json_file_path.open("r", encoding="utf-8") as json_file:  
+    loaded_data = json.load(json_file)  
+    legal_data_array = loaded_data["data"]  
 new_continuous_legal_data = {tuple(arr): None for arr in legal_data_array}
 
 def check_if_in_dict(array):

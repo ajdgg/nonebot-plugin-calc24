@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nonebot-plugin-calc24"
-version = "0.2.1"
+version = "0.2.2"
 description = "A 24-point game plugin implemented using NoneBot."
 authors = ["AwAjie <139576615+ajdgg@users.noreply.github.com>"]
 license = "LICENSE"
