@@ -30,21 +30,30 @@ def random_number_generator():
 def paixu(sort_array):
         return sorted(sort_array, reverse=True)
 
+def regular_expression(regular , string):
+    matching_result = re.findall(regular, string)
+    if matching_result:
+        return True
+    return False
+
+
 class xj_calc24:
-    def a_main(self):
+    def calc_a_main(self):
         return random_number_generator()
-    
-    
 
+    def calc_b_main(self, equation, array):
 
-    def b_main(self, equation, array):
-        numbers_str = re.findall(r'\d+', equation)
-        # 将匹配到的数字字符串转换为整数数组
+        regular_a = r'(?:[+\-*/]{2})'
+        if regular_expression(regular_a, equation):
+            return 'CONTINUOUS_OPERATOR'
+
+        plain_english_text = equation.replace('（', '(').replace('）', ')')
+        numbers_str = re.findall(r'\d+', plain_english_text)
         numbers_int = [int(num) for num in numbers_str]
         # print("csaa",numbers_int)
         if paixu(numbers_int) != paixu(array):
-            return 'no'
+            return 'NO'
     
-        if eval(equation) == 24:
-            return '傻逼你居然答对了'
-        return '傻逼我'
+        if eval(plain_english_text) == 24:
+            return
+        return 'ERROR'
