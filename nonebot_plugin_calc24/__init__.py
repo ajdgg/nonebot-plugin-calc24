@@ -2,7 +2,7 @@ import asyncio
 from nonebot import on_command, on_message
 from nonebot.rule import to_me
 from nonebot.params import CommandArg
-from nonebot.adapters.onebot.v11 import Bot, Event
+from nonebot.adapters import Bot, Event
 from nonebot.typing import T_State 
 from nonebot.plugin import PluginMetadata
 from .xj_calc24 import xj_calc24
