@@ -2,9 +2,7 @@ import json
 from pathlib import Path 
 
 def file_path(file):
-    script_path = Path(__file__).absolute()  
-    current_dir = script_path.parent  
-    return current_dir / file 
+    return Path(__file__).resolve().parent / file
 
 class file_handle:
     def file_reading(self, file:str, key:str):
