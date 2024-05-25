@@ -1,6 +1,6 @@
 <div align="center" style="padding-top: 60px">
 
-<img width="200px" src="https://raw.githubusercontent.com/ajdgg/data/b2252efea039901f02d78711d605d5f12a78d12b/AwajieLogo.svg" alt="">
+<img width="200px" src="https://raw.githubusercontent.com/ajdgg/data/903bb9969285cb47f8938018f76c2218146987eb/AwajieLogo.png" alt="">
 
 # nonebot-plugin-calc24
 
@@ -10,8 +10,21 @@ _✨ NoneBot 插件简单描述 ✨_
 
 </div>
 
-## 使用
+### 安装
 
+- 使用 nb-cli
+
+```
+nb plugin install nonebot-plugin-calc24
+```
+
+- 使用 pip
+
+```
+pip install nonebot-plugin-calc24
+```
+
+### 使用
 该插件实现的小游戏的游戏规则为一人一题。在插件启动时使用[24点]命令启动游戏。
 
 使用加减乘除使给出的数等于24，在游戏进行时可以直接回复[退出]来退出游戏或者[换一题]来更换新的题目。
@@ -31,5 +44,8 @@ _✨ NoneBot 插件简单描述 ✨_
 - 24点 关闭连续模式：关闭连续模式
 
 ## 更新
+### 2024-05-26
+- 更新模式切换判断
+- └ 缺点：插件在自己或bot重启后会默认关闭连续模式
 ### 2024-05-19
 - 添加是否进行连续回答模式

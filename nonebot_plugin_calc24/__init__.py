@@ -16,13 +16,11 @@ __plugin_meta__ = PluginMetadata(
     homepage="https://github.com/ajdgg/nonebot-plugin-calc24",
 )
 
+_continuous_mode = False
 _timers = {}
 _calc24_session = {} 
 _original_array = {}
 
-file_handle = file_handle()
-c_m_data = file_handle.file_reading("calc24-data.json", "continuous-mode")
-    
 async def timeout_task(user_id, task):
     await asyncio.sleep(300) 
     if user_id in _calc24_session and _calc24_session[user_id] == "waiting_for_input":
@@ -35,14 +33,14 @@ async def handle_first_receive(bot: Bot, event: Event, state: T_State, args = Co
         if  Plugin_status == 'help':
             await calc24.finish("该插件实现的小游戏的游戏规则为一人一题。在插件启动时使用[24点]命令启动游戏。使用加减乘除使给出的数等于24，在游戏进行时可以直接回复[退出]来退出游戏或者[换一题]来更换新的题目。如果在5分钟内未回答会自动退出。\n ===指令===\n 24点：开始游戏\n ===游戏进行时===\n 退出：退出游戏\n 换一题：更换新的题目\n ===设置===\n 24点 开启连续模式：开启连续模式\n 24点 退出连续模式：退出连续模式")
         elif Plugin_status == '开启连续模式' or Plugin_status == '连续模式':
-            if c_m_data:
+            if _continuous_mode:
                 await calc24.finish("连续模式已是开启了哦")
             else:
-                file_handle.file_change("calc24-data.json", "continuous-mode", True)
+                _continuous_mode = True
                 await calc24.finish("连续模式开启")
         elif Plugin_status == '退出连续模式' or Plugin_status == '关闭连续模式':
-                if c_m_data:
-                    file_handle.file_change("calc24-data.json", "continuous-mode", False)
+                if _continuous_mode:
+                    _continuous_mode = False
                     await calc24.finish("连续模式关闭")
                 else:
                     await calc24.finish("连续模式已是关闭的哦")
@@ -86,7 +84,7 @@ async def handle_calc24_input(bot: Bot, event: Event):
         elif b_data == 'ERROR':
             await calc24_input.send('答案错误，请重新输入')
         else:
-            if c_m_data:
+            if _continuous_mode:
                 a_data = class_calc24.calc_a_main()
                 _original_array['array'] = a_data
                 await calc24.send(f'{sender_nickname}答对了呢，下一题是：{str(a_data)}')
