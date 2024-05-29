@@ -1,6 +1,6 @@
 <div align="center" style="padding-top: 60px">
 
-<img width="200px" src="https://raw.githubusercontent.com/ajdgg/data/903bb9969285cb47f8938018f76c2218146987eb/AwajieLogo.png" alt="">
+<img width="120px" src="https://raw.githubusercontent.com/ajdgg/data/903bb9969285cb47f8938018f76c2218146987eb/AwajieLogo.png" alt="">
 
 # nonebot-plugin-calc24
 
