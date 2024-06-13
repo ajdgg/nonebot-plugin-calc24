@@ -7,23 +7,27 @@ file_handle = file_handle()
 legal_data_array = file_handle.file_reading("calc24-data.json", "data")
 new_continuous_legal_data = {tuple(arr): None for arr in legal_data_array}
 
+
 def check_if_in_dict(array):
     key_tuple = tuple(array)
     return key_tuple in new_continuous_legal_data
 
+
 # 生成随机数函数
 def random_number_generator():
-    intdata = [1,1,1,1, 2,2,2,2, 3,3,3,3, 4,4,4,4, 5,5,5,5, 6,6,6,6, 7,7,7,7, 8,8,8,8, 9,9,9,9, 10,10,10,10, 11,11,11,11, 12,12,12,12, 13,13,13,13]
+    intdata = [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 12, 13, 13, 13, 13]
     a_data = random.sample(intdata, 4)
     # a_data = [1,1,1,1]
     if check_if_in_dict(a_data):
-        return random.sample(intdata, 4) 
+        return random.sample(intdata, 4)
     return a_data
 
-def paixu(sort_array):
-        return sorted(sort_array, reverse=True)
 
-def regular_expression(regular , string):
+def paixu(sort_array):
+    return sorted(sort_array, reverse=True)
+
+
+def regular_expression(regular, string):
     matching_result = re.findall(regular, string)
     if matching_result:
         return True
@@ -46,7 +50,7 @@ class xj_calc24:
         # print("csaa",numbers_int)
         if paixu(numbers_int) != paixu(array):
             return 'NO'
-    
+
         if eval(plain_english_text) == 24:
             return
         return 'ERROR'
