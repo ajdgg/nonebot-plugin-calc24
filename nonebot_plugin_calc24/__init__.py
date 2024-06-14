@@ -1,5 +1,4 @@
 import asyncio
-from .file_handle import file_handle
 from nonebot import on_command, on_message
 from nonebot.rule import to_me
 from nonebot.params import CommandArg
@@ -24,9 +23,6 @@ _continuous_mode = {}
 _continuous_mode['pattern'] = False
 _calc24_session = {}
 _original_array = {}
-
-file_handle = file_handle()
-c_m_data = file_handle.file_reading("calc24-data.json", "continuous-mode")
 
 
 async def timeout_task(user_id, task):
