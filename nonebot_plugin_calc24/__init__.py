@@ -33,7 +33,7 @@ async def timeout_task(user_id, task):
     await asyncio.sleep(300)
     if user_id in _calc24_session and _calc24_session[user_id] == "waiting_for_input":
         del _calc24_session[user_id]
-        del _original_array['array']
+        del _original_array[user_id]
 calc24 = on_command("24点", rule=to_me(), priority=10, block=True)
 
 
