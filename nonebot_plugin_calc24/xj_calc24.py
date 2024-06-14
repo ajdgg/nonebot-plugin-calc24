@@ -5,7 +5,10 @@ from .file_handle import file_handle
 file_handle = file_handle()
 
 legal_data_array = file_handle.file_reading("calc24-data.json", "data")
-new_continuous_legal_data = {tuple(arr): None for arr in legal_data_array}
+if legal_data_array is None:
+    raise ValueError("文件读取错误")
+else:
+    new_continuous_legal_data = {tuple(arr): None for arr in legal_data_array}
 
 
 def check_if_in_dict(array):
@@ -17,7 +20,6 @@ def check_if_in_dict(array):
 def random_number_generator():
     intdata = [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 12, 13, 13, 13, 13]
     a_data = random.sample(intdata, 4)
-    # a_data = [1,1,1,1]
     if check_if_in_dict(a_data):
         return random.sample(intdata, 4)
     return a_data
