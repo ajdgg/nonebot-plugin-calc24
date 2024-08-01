@@ -6,6 +6,9 @@ from nonebot.adapters import Bot, Event
 from nonebot.typing import T_State
 from nonebot.plugin import PluginMetadata
 from .xj_calc24 import xj_calc24
+from .file_handle import file_handle
+
+file_handle = file_handle()
 class_calc24 = xj_calc24()
 
 
@@ -17,10 +20,11 @@ __plugin_meta__ = PluginMetadata(
     homepage="https://github.com/ajdgg/nonebot-plugin-calc24",
 )
 
+pattern_data = file_handle.file_reading("calc24-data.json", "pattern")
 
 _timers = {}
 _continuous_mode = {}
-_continuous_mode['pattern'] = False
+_continuous_mode['pattern'] = pattern_data
 _calc24_session = {}
 _original_array = {}
 
@@ -43,10 +47,12 @@ async def handle_first_receive(bot: Bot, event: Event, state: T_State, args=Comm
                 await calc24.finish("连续模式已是开启了哦")
             else:
                 _continuous_mode['pattern'] = True
+                file_handle.file_change('calc24-data.json', 'pattern', True)
                 await calc24.finish("连续模式开启")
         elif Plugin_status == '退出连续模式' or Plugin_status == '关闭连续模式':
                 if _continuous_mode['pattern']:
                     _continuous_mode['pattern'] = False
+                    file_handle.file_change("calc24-data.json", "pattern", False)
                     await calc24.finish("连续模式关闭")
                 else:
                     await calc24.finish("连续模式已是关闭的哦")

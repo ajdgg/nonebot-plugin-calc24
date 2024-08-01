@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Union
 import json
 
 
@@ -20,7 +21,7 @@ class file_handle:
         except Exception as e:
             print(f"An error occurred: {e}")
 
-    def file_change(self, file: str, key: str, value: str):
+    def file_change(self, file: str, key: str, value: Union[str, int, float, bool, list]):
         try:
             json_file_path_change = file_path(file)
             with json_file_path_change.open('r', encoding='utf-8') as f:
